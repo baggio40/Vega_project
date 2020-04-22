@@ -1,9 +1,15 @@
 {
 
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-
+  "width" : 860 ,
+  "height": 500,
   "data": {"url": "https://raw.githubusercontent.com/Maplub/AirQualityData/master/PM10_2018_daily.csv"},
   "title": "2018 Daily Mean PM10 ",
+  "selection":{
+      "pts": {
+         "type": "single"
+      }
+  },
   "mark": "rect",
 
   "encoding": {
@@ -12,12 +18,17 @@
 
     "y": {"timeUnit":"month","field": "time", "type": "ordinal","title": "Month"},
     "color": {
+      "condition":{
+        "selection":"pts",
           "field": "pm10",
           "aggregate": "mean",
           "type": "quantitative",
           "legend": {
               "title": "pm10"
     }
-   }
-  }
+   },"value":"grey"
+  },
+    "tooltip":[{"field":"id 2","type":"nominal"},
+                {"field":"pm10","type":"quantitative"}]
+}
 }
