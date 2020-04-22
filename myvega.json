@@ -1,34 +1,36 @@
 {
 
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width" : 860 ,
+  "width" : 950 ,
   "height": 500,
-  "data": {"url": "https://raw.githubusercontent.com/Maplub/AirQualityData/master/PM10_2018_daily.csv"},
-  "title": "2018 Daily Mean PM10 ",
+  "data": {"url": "https://raw.githubusercontent.com/baggio40/Vega_project/master/%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%8A%E0%B8%99CSV.csv"},
+  
+  "title": "จำนวนประชากรชายรวมในแต่ละชุมชนของแต่ละเขตในกรุงเทพมหานครฯ ",
   "selection":{
       "pts": {
          "type": "single"
       }
   },
-  "mark": "rect",
+  "mark": "bar",
 
   "encoding": {
 
-    "x": {"timeUnit":"date","field": "time", "type": "ordinal","title": "Day"},
+    "y": {"field": "dname", "type": "nominal","title": "เขตในกรุงเทพมหานคร"},
 
-    "y": {"timeUnit":"month","field": "time", "type": "ordinal","title": "Month"},
+    "x": {"field": "num_male","aggregate":"sum","type": "quantitative","title": "จำนวนประชากร (คน )"},
     "color": {
       "condition":{
         "selection":"pts",
-          "field": "pm10",
-          "aggregate": "mean",
-          "type": "quantitative",
+          "field": "name",
+          
+          "type": "nominal",
           "legend": {
-              "title": "pm10"
+              "title": "ชุมชน"
     }
    },"value":"grey"
   },
-    "tooltip":[{"field":"id 2","type":"nominal"},
-                {"field":"pm10","type":"quantitative"}]
+    "tooltip":[{"field":"dname","type":"nominal"},
+                {"field":"num_male","type":"quantitative"},
+                {"field":"name","type":"nominal"}]
 }
 }
